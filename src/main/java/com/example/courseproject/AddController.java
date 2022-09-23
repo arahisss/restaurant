@@ -55,7 +55,7 @@ public class AddController {
 
     private void addQuote(String quote, String teacher, String subject) {
         DatabaseHandler db = new DatabaseHandler();
-        TeacherQuote teacherQuote = new TeacherQuote(quote, teacher, subject);
+        TeacherQuote teacherQuote = new TeacherQuote(teacher, subject, quote);
         db.addTeacherQuote(teacherQuote);
 
     }

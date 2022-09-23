@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="527.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.QuoteController">
    <children>
-      <Label layoutX="215.0" layoutY="40.0" prefHeight="34.0" prefWidth="466.0" text="Любимые цитаты преподавателей">
+      <Label layoutX="217.0" layoutY="40.0" prefHeight="34.0" prefWidth="466.0" text="Любимые цитаты преподавателей">
          <font>
             <Font name="Serif Regular" size="30.0" />
          </font>
@@ -29,6 +29,16 @@
       </Button>
 
       <Button fx:id="deleteButton" layoutX="514.0" layoutY="437.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="158.0" style="-fx-background-color: #FF7F50; -fx-background-radius: 20;" text="Удалить запись" textFill="WHITE">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="logOutButton" layoutX="775.0" layoutY="40.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Выход" textFill="WHITE">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="myNotesButton" layoutX="51.0" layoutY="437.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="158.0" style="-fx-background-color: #358385; -fx-background-radius: 20;" text="Мои записи" textFill="WHITE">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>

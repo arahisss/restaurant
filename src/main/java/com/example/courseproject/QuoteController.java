@@ -36,8 +36,20 @@ public class QuoteController {
     private Button deleteButton;
 
     @FXML
+    private Button logOutButton;
+
+    @FXML
     void initialize() {
-        fillTable();
+        DatabaseHandler db = new DatabaseHandler();
+        ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getTeacherQuotes());
+
+        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        table.setItems(quotesData);
+
 
         addButton.setOnAction(event -> {
             addButton.getScene().getWindow().hide();
@@ -46,6 +58,7 @@ public class QuoteController {
 
         deleteButton.setOnAction(e -> {
             TeacherQuote selectedItem = table.getSelectionModel().getSelectedItem();
+            db.deleteTeacherQuote(selectedItem);
             table.getItems().remove(selectedItem);
         });
 

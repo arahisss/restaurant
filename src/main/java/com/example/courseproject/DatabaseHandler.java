@@ -11,6 +11,8 @@ import java.util.ArrayList;
 public class DatabaseHandler {
     Connection dbConnection;
 
+    public static User currentUser;
+
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -24,8 +26,12 @@ public class DatabaseHandler {
 
     // Добавление записи в таблицу users
     public void signUpUser(User user) {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         String insert = "INSERT INTO users (login, hash_password) VALUES(?, ?)";
         //Todo: параметрический запрос
+
+        currentUser = user;
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
@@ -43,13 +49,14 @@ public class DatabaseHandler {
     }
 
     public void addTeacherQuote(TeacherQuote teacherQuote) {
-        String insert = "INSERT INTO teacher_quotes (quote, teacher, subject) VALUES(?, ?, ?)";
+        String insert = "INSERT INTO teacher_quotes (id_user, quote, teacher, subject) VALUES(?, ?, ?, ?)";
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-            prSt.setString(1, teacherQuote.getQuote());
-            prSt.setString(2, teacherQuote.getTeacher());
-            prSt.setString(3, teacherQuote.getSubject());
+            prSt.setString(1, currentUser.getId());
+            prSt.setString(2, teacherQuote.getQuote());
+            prSt.setString(3, teacherQuote.getTeacher());
+            prSt.setString(4, teacherQuote.getSubject());
 
             prSt.executeUpdate();
 
@@ -87,6 +94,7 @@ public class DatabaseHandler {
 
         String select = "SELECT * FROM users WHERE login=? AND hash_password=?";
 
+
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, user.getLogin());
@@ -98,6 +106,7 @@ public class DatabaseHandler {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
 
         return resultSet;
     }
@@ -122,7 +131,6 @@ public class DatabaseHandler {
                         resultSet.getString("date").substring(0, 10));
 
                 quotes.add(quote);
-
 
             }
         } catch (SQLException e) {

@@ -27,9 +27,9 @@
             </font>
         </Label>
       <ImageView fitHeight="42.0" fitWidth="30.0" layoutX="56.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="/img/back.png" />
-         </image>
+<!--         <image>-->
+<!--            <Image url="/img/back.png" />-->
+<!--         </image>-->
       </ImageView>
       <Button fx:id="signUpButton" layoutX="356.0" layoutY="308.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="188.0" style="-fx-background-color: #008f24;" text="Зарегистрироваться" textFill="WHITE">
          <font>

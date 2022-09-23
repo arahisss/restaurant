@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -63,18 +64,29 @@ public class AuthController {
         User user = new User(loginText, passwordText);
         ResultSet result = db.getUser(user);
 
+
         int counter = 0;
 
         while(true) {
+
             try {
                 if (!result.next()) break;
+                user.setId(result.getLong("id"));
+//                System.out.println(result.getInt("id"));
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             counter++;
+
+
         }
 
         if (counter >= 1) {
+            DatabaseHandler.currentUser = user;
+
+//            DatabaseHandler.currentUser.setId(user.getId());
+
             signInButton.getScene().getWindow().hide();
             openNewScene("quotes.fxml");
             System.out.println("Пользователь успешно найден");

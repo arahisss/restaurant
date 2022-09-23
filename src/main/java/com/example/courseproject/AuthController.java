@@ -83,7 +83,7 @@ public class AuthController {
         }
 
         if (counter >= 1) {
-            DatabaseHandler.currentUser = user;
+            DatabaseHandler.setCurrentUser(user);
 
 //            DatabaseHandler.currentUser.setId(user.getId());
 

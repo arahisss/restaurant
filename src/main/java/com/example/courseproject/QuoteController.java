@@ -62,20 +62,26 @@ public class QuoteController {
             table.getItems().remove(selectedItem);
         });
 
+        logOutButton.setOnAction(event -> {
+            logOutButton.getScene().getWindow().hide();
+            DatabaseHandler.setCurrentUser(null);
+            openNewScene("home.fxml");
+        });
+
 
     }
 
-    private void fillTable() {
-        DatabaseHandler db = new DatabaseHandler();
-        ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getTeacherQuotes());
-
-        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacher"));
-        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
-        quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-        table.setItems(quotesData);
-    }
+//    private void fillTable() {
+//        DatabaseHandler db = new DatabaseHandler();
+//        ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getTeacherQuotes());
+//
+//        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+//        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
+//        quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
+//        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+//
+//        table.setItems(quotesData);
+//    }
 
     public void openNewScene(String window) {
         try {

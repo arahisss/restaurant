@@ -33,7 +33,12 @@
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="logOutButton" layoutX="775.0" layoutY="40.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #A54044; -fx-background-radius: 20;" text="Выход" textFill="WHITE">
+      <Button fx:id="logOutButton" layoutX="775.0" layoutY="40.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="86.0" style="-fx-background-color: #000000; -fx-background-radius: 20;" text="Выход" textFill="WHITE">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="myNotesButton" layoutX="51.0" layoutY="437.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="158.0" style="-fx-background-color: #358385; -fx-background-radius: 20;" text="Мои записи" textFill="WHITE">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>

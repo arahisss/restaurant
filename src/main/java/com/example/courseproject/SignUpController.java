@@ -59,6 +59,7 @@ public class SignUpController {
         User user = new User(loginField.getText().trim(), passwordField.getText().trim());
         db.signUpUser(user);
 
+
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseHandler {
     Connection dbConnection;
 
-    public static User currentUser;
+    private static User currentUser;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -140,6 +140,9 @@ public class DatabaseHandler {
         }
 
         return quotes;
+    }
 
+    public static void setCurrentUser(User user) {
+        currentUser = user;
     }
 }

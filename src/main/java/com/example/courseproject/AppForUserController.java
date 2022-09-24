@@ -39,6 +39,9 @@ public class QuoteController {
     private Button logOutButton;
 
     @FXML
+    private Button myNotesButton;
+
+    @FXML
     void initialize() {
         DatabaseHandler db = new DatabaseHandler();
         ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getTeacherQuotes());
@@ -66,6 +69,11 @@ public class QuoteController {
             logOutButton.getScene().getWindow().hide();
             DatabaseHandler.setCurrentUser(null);
             openNewScene("home.fxml");
+        });
+
+        myNotesButton.setOnAction(event -> {
+            myNotesButton.getScene().getWindow().hide();
+            openNewScene("myNotes.fxml");
         });
 
 

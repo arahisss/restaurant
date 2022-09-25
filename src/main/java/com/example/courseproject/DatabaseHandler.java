@@ -120,6 +120,7 @@ public class DatabaseHandler {
         return resultSet;
     }
 
+
     public ArrayList<TeacherQuote> getTeacherQuotes() {
 
         ResultSet resultSet = null;

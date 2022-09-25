@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.example.courseproject.animations.Shake;
@@ -45,9 +46,9 @@ public class AuthController {
 
         signInButton.setOnAction(event -> {
             String loginText = loginField.getText().trim();
-            String passwordText = passwordField.getText().trim();
+            String passwordText = CryptWithMD5.cryptWithMD5(passwordField.getText().trim());
 
-            if (!loginText.equals("") && !passwordText.equals("")) {
+            if (!loginText.equals("") && !Objects.equals(passwordText, "")) {
                 loginUser(loginText, passwordText);
             }
             else {
@@ -72,7 +73,6 @@ public class AuthController {
         User user = new User(loginText, passwordText);
         ResultSet result = db.getUser(user);
 
-
         int counter = 0;
         long role = 0;
 
@@ -82,7 +82,6 @@ public class AuthController {
                 user.setId(result.getLong("id"));
                 role = result.getLong("id_role");
                 user.setId_role(role);
-                System.out.println(role + "sdssdsdeeeeeee");
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -92,8 +91,6 @@ public class AuthController {
         
         if (counter >= 1) {
             DatabaseHandler.setCurrentUser(user);
-//            DatabaseHandler.currentUser.setId(user.getId());
-
             signInButton.getScene().getWindow().hide();
 
             // Разграничение прав для пользователя и суперпользователя

@@ -35,15 +35,14 @@ public class SignUpController {
         signUpButton.setOnAction(event -> {
             signUpNewUser();
             signUpButton.getScene().getWindow().hide();
-            openNewScene("appForSuper.fxml");
+
+            openNewScene("appForUser.fxml");
         });
 
         backButton.setOnAction(event -> {
             backButton.getScene().getWindow().hide();
             openNewScene("home.fxml");
         });
-
-
 
     }
 
@@ -61,7 +60,7 @@ public class SignUpController {
 
     private void signUpNewUser() {
         DatabaseHandler db = new DatabaseHandler();
-        User user = new User(loginField.getText().trim(), passwordField.getText().trim());
+        User user = new User(loginField.getText().trim(), CryptWithMD5.cryptWithMD5(passwordField.getText().trim()));
         db.signUpUser(user);
     }
 

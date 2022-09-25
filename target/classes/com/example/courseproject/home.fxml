@@ -7,30 +7,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="900.0" style="-fx-background-color: #fafafa;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="900.0" style="-fx-background-color: #2F3136;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.HomeController">
     <children>
-        <Label layoutX="231.0" layoutY="34.0" prefHeight="48.0" prefWidth="438.0" text="Любимые фразы преподавателей">
+        <Label layoutX="231.0" layoutY="34.0" prefHeight="48.0" prefWidth="438.0" text="Любимые фразы преподавателей" textFill="WHITE">
             <font>
                 <Font name="Serif Regular" size="30.0" />
             </font>
         </Label>
-      <Button fx:id="authButton" layoutX="720.0" layoutY="34.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" style="-fx-background-color: #170b0f; -fx-border-radius: 5;" text="Вход" textFill="#fcfcfc">
+      <Button fx:id="authButton" layoutX="720.0" layoutY="34.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Вход" textFill="#fcfcfc">
          <font>
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="signUpButton" layoutX="721.0" layoutY="82.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="141.0" style="-fx-background-color: #008f24;" text="Регистрация" textFill="WHITE">
-         <font>
-            <Font name="Serif Regular" size="18.0" />
-         </font>
-      </Button>
-      <TableView fx:id="table" layoutX="36.0" layoutY="168.0" prefHeight="278.0" prefWidth="827.0">
+      <TableView fx:id="table" layoutX="36.0" layoutY="168.0" prefHeight="278.0" prefWidth="827.0" style="-fx-control-inner-background: #2F3136; -fx-border-color: #ffffff;">
          <columns>
             <TableColumn fx:id="teacherColumn" prefWidth="107.1999740600586" text="Преподаватель" />
             <TableColumn fx:id="subjectColumn" prefWidth="211.20001220703125" text="Предмет" />
             <TableColumn fx:id="quoteColumn" prefWidth="427.2000427246094" text="Цитата" />
-            <TableColumn fx:id="dateColumn" prefWidth="84.0" text="Дата" />
+            <TableColumn fx:id="dateColumn" minWidth="0.0" prefWidth="79.20000000000005" text="Дата" />
          </columns>
       </TableView>
+      <Button fx:id="signUpButton" layoutX="720.0" layoutY="82.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="142.0" style="-fx-background-color: transparent; -fx-border-color: #ffffff; -fx-border-radius: 20;" text="Регистрация" textFill="#fcfcfc">
+         <font>
+            <Font name="Serif Regular" size="18.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

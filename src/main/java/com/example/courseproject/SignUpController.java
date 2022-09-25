@@ -27,18 +27,23 @@ public class SignUpController {
     private Button signUpButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     void initialize() {
 
         signUpButton.setOnAction(event -> {
             signUpNewUser();
             signUpButton.getScene().getWindow().hide();
-            openNewScene("quotes.fxml");
+            openNewScene("appForSuper.fxml");
         });
 
-        backImageButton.setOnAction(event -> {
-            backImageButton.getScene().getWindow().hide();
-            openNewScene("auth.fxml");
+        backButton.setOnAction(event -> {
+            backButton.getScene().getWindow().hide();
+            openNewScene("home.fxml");
         });
+
+
 
     }
 
@@ -58,8 +63,6 @@ public class SignUpController {
         DatabaseHandler db = new DatabaseHandler();
         User user = new User(loginField.getText().trim(), passwordField.getText().trim());
         db.signUpUser(user);
-
-
     }
 
 }

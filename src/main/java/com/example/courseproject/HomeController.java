@@ -70,19 +70,15 @@ public class HomeController {
     }
 
     public void openNewScene(String window) {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(window));
-
         try {
-            loader.load();
-        } catch (IOException e) {
+            Parent anotherRoot = FXMLLoader.load(getClass().getResource(window));
+            Stage anotherStage = new Stage();
+            anotherStage.setTitle("Цитаты преподавателей");
+            anotherStage.setScene(new Scene(anotherRoot));
+            anotherStage.show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
     }
 
     private static void con() {

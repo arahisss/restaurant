@@ -5,13 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class DatabaseHandler {
     Connection dbConnection;
 
-    private static User currentUser;
+    public static User currentUser;
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.cj.jdbc.Driver");
@@ -23,24 +22,35 @@ public class DatabaseHandler {
         return dbConnection;
     }
 
+    public void assignIdUser() {
+        ResultSet result = getUser(currentUser);
+
+        try {
+            result.next();
+            currentUser.setId(result.getLong("id"));
+            currentUser.setId_role(result.getLong("id_role"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     // Добавление записи в таблицу users
     public void signUpUser(User user) {
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        String insert = "INSERT INTO users (login, hash_password) VALUES(?, ?)";
+        String insert = "INSERT INTO users (id_role, login, hash_password) VALUES(?, ?, ?)";
         //Todo: параметрический запрос
 
         currentUser = user;
 
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(insert);
-            prSt.setString(1, user.getLogin());
-            //Todo: сделать хэш пароля
-            prSt.setString(2, user.getPassword());
+            prSt.setString(1, "1");
+            prSt.setString(2, user.getLogin());
+            prSt.setString(3, user.getPassword());
 
             prSt.executeUpdate();
-
+            assignIdUser();
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -94,7 +104,6 @@ public class DatabaseHandler {
 
         String select = "SELECT * FROM users WHERE login=? AND hash_password=?";
 
-
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
             prSt.setString(1, user.getLogin());
@@ -120,6 +129,37 @@ public class DatabaseHandler {
         try {
             PreparedStatement prSt = getDbConnection().prepareStatement(select);
 
+            resultSet = prSt.executeQuery();
+
+            while (true) {
+                if (!resultSet.next()) break;
+
+                TeacherQuote quote = new TeacherQuote(resultSet.getString("teacher"),
+                        resultSet.getString("subject"),
+                        resultSet.getString("quote"),
+                        resultSet.getString("date").substring(0, 10));
+
+                quotes.add(quote);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return quotes;
+    }
+
+    public ArrayList<TeacherQuote> getMyNotes() {
+
+        ResultSet resultSet;
+        String select = "SELECT * FROM teacher_quotes WHERE id_user=?";
+        ArrayList<TeacherQuote> quotes = new ArrayList<>();
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, currentUser.getId());
             resultSet = prSt.executeQuery();
 
             while (true) {

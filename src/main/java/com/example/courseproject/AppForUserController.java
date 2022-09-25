@@ -12,7 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class QuoteController {
+public class AppForUserController {
 
     @FXML
     private TableView<TeacherQuote> table;
@@ -32,8 +32,6 @@ public class QuoteController {
     @FXML
     private Button addButton;
 
-    @FXML
-    private Button deleteButton;
 
     @FXML
     private Button logOutButton;
@@ -59,11 +57,6 @@ public class QuoteController {
             openNewScene("add.fxml");
         });
 
-        deleteButton.setOnAction(e -> {
-            TeacherQuote selectedItem = table.getSelectionModel().getSelectedItem();
-            db.deleteTeacherQuote(selectedItem);
-            table.getItems().remove(selectedItem);
-        });
 
         logOutButton.setOnAction(event -> {
             logOutButton.getScene().getWindow().hide();

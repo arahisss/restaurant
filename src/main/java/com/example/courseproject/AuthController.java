@@ -38,6 +38,9 @@ public class AuthController {
     private TextField loginField;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     void initialize() {
 
         signInButton.setOnAction(event -> {
@@ -57,6 +60,11 @@ public class AuthController {
             signUpButton.getScene().getWindow().hide();
             openNewScene("signUp.fxml");
         });
+
+        backButton.setOnAction(event -> {
+            backButton.getScene().getWindow().hide();
+            openNewScene("home.fxml");
+        });
     }
 
     private void loginUser(String loginText, String passwordText) {
@@ -66,29 +74,36 @@ public class AuthController {
 
 
         int counter = 0;
+        long role = 0;
 
         while(true) {
-
             try {
                 if (!result.next()) break;
                 user.setId(result.getLong("id"));
-//                System.out.println(result.getInt("id"));
+                role = result.getLong("id_role");
+                user.setId_role(role);
+                System.out.println(role + "sdssdsdeeeeeee");
 
             } catch (SQLException e) {
                 e.printStackTrace();
             }
             counter++;
-
-
         }
-
+        
         if (counter >= 1) {
             DatabaseHandler.setCurrentUser(user);
-
 //            DatabaseHandler.currentUser.setId(user.getId());
 
             signInButton.getScene().getWindow().hide();
-            openNewScene("quotes.fxml");
+
+            // Разграничение прав для пользователя и суперпользователя
+            if (role == 2) {
+                openNewScene("appForSuper.fxml");
+            }
+            else {
+                openNewScene("appForUser.fxml");
+            }
+
             System.out.println("Пользователь успешно найден");
         }
         else {

@@ -6,13 +6,8 @@ public class User {
     private String login;
     private String password;
     private long id;
+    private long id_role;
 
-
-    public User(String login, String password, long id) {
-        this.login = login;
-        this.password = password;
-        this.id = id;
-    }
 
     public User(String login, String password) {
         this.login = login;
@@ -46,5 +41,13 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(long id_role) {
+        this.id_role = id_role;
     }
 }

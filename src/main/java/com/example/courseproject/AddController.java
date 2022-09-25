@@ -40,7 +40,13 @@ public class AddController {
 
             if (!quote.equals("") && !teacher.equals("") && !subject.equals("")) {
                 addQuote(quote, teacher, subject);
-                openNewScene("quotes.fxml");
+
+                if (DatabaseHandler.currentUser.getId_role() == 2) {
+                    openNewScene("appForSuper.fxml");
+                }
+                else {
+                    openNewScene("appForUser.fxml");
+                }
             }
             else {
                 System.out.println("Заполните все поля!");
@@ -49,7 +55,12 @@ public class AddController {
 
         backButton.setOnAction(event -> {
             backButton.getScene().getWindow().hide();
-            openNewScene("quotes.fxml");
+            if (DatabaseHandler.currentUser.getId_role() == 2) {
+                openNewScene("appForSuper.fxml");
+            }
+            else {
+                openNewScene("appForUser.fxml");
+            }
         });
     }
 

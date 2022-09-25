@@ -38,6 +38,9 @@ public class AppForSuperController {
     @FXML
     private Button logOutButton;
 
+    @FXML
+    private Button updateButton;
+
 
     @FXML
     void initialize() {
@@ -55,6 +58,17 @@ public class AppForSuperController {
         addButton.setOnAction(event -> {
             addButton.getScene().getWindow().hide();
             openNewScene("add.fxml");
+        });
+
+        updateButton.setOnAction(event -> {
+            TeacherQuote selectedItem = table.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                System.out.println(selectedItem.getId());
+
+                UpdateController.currentQuote = selectedItem;
+                updateButton.getScene().getWindow().hide();
+                openNewScene("update.fxml");
+            }
         });
 
         deleteButton.setOnAction(event -> {

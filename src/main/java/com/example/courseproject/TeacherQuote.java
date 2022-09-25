@@ -5,12 +5,14 @@ public class TeacherQuote {
     private String teacher;
     private String subject;
     private String date;
+    private long id;
 
-    public TeacherQuote(String teacher, String subject, String quote, String date) {
+    public TeacherQuote(long id, String teacher, String subject, String quote, String date) {
         this.quote = quote;
         this.teacher = teacher;
         this.subject = subject;
         this.date = date;
+        this.id = id;
     }
 
     public TeacherQuote(String teacher, String subject, String quote) {
@@ -18,7 +20,6 @@ public class TeacherQuote {
         this.teacher = teacher;
         this.subject = subject;
     }
-
 
     public String getQuote() {
         return quote;
@@ -52,5 +53,11 @@ public class TeacherQuote {
         this.date = date;
     }
 
+    public long getId() {
+        return id;
+    }
 
+    public void setId(long id) {
+        this.id = id;
+    }
 }

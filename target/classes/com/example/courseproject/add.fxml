@@ -11,8 +11,7 @@
 
 <AnchorPane prefHeight="527.0" prefWidth="900.0" style="-fx-background-color: #2F3136;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.AddController">
    <children>
-      
-      <Label layoutX="299.0" layoutY="55.0" prefHeight="26.0" prefWidth="302.0" text="Добавьте свою запись" textFill="WHITE">
+      <Label layoutX="310.0" layoutY="38.0" prefHeight="34.0" prefWidth="278.0" text="Добавьте свою запись" textFill="WHITE">
          <font>
             <Font name="Serif Regular" size="29.0" />
          </font>

@@ -2,6 +2,7 @@ package com.example.courseproject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +11,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class MyNotesController {
 
@@ -25,6 +31,12 @@ public class MyNotesController {
 
     @FXML
     private Button backButton;
+
+    @FXML
+    private Button updateButton;
+
+    @FXML
+    private Text countText;
 
     @FXML
     private TableView<TeacherQuote> table;
@@ -53,16 +65,27 @@ public class MyNotesController {
 
         table.setItems(quotesData);
 
-
         addButton.setOnAction(event -> {
             addButton.getScene().getWindow().hide();
             openNewScene("add.fxml");
+        });
+
+        updateButton.setOnAction(event -> {
+            TeacherQuote selectedItem = table.getSelectionModel().getSelectedItem();
+            if (selectedItem != null) {
+                System.out.println(selectedItem.getId());
+
+                UpdateController.currentQuote = selectedItem;
+                updateButton.getScene().getWindow().hide();
+                openNewScene("update.fxml");
+            }
         });
 
         deleteButton.setOnAction(e -> {
             TeacherQuote selectedItem = table.getSelectionModel().getSelectedItem();
             db.deleteTeacherQuote(selectedItem);
             table.getItems().remove(selectedItem);
+            setCountText(db);
         });
 
         backButton.setOnAction(event -> {
@@ -76,7 +99,18 @@ public class MyNotesController {
             openNewScene("home.fxml");
         });
 
+        setCountText(db);
 
+    }
+
+    private void setCountText(DatabaseHandler db) {
+        try {
+            ResultSet rs = db.countQuotes();
+            rs.next();
+            countText.setText(String.valueOf(rs.getInt("rowcount")));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void openNewScene(String window) {

@@ -94,6 +94,26 @@ public class DatabaseHandler {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateTeacherQuote(TeacherQuote teacherQuote) {
+        String delete = "UPDATE teacher_quotes SET teacher=?, subject=?, quote = ? WHERE id=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(delete);
+            prSt.setString(1, teacherQuote.getTeacher());
+            prSt.setString(2, teacherQuote.getSubject());
+            prSt.setString(3, teacherQuote.getQuote());
+            prSt.setString(4, String.valueOf(teacherQuote.getId()));
+
+
+            prSt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -135,7 +155,8 @@ public class DatabaseHandler {
             while (true) {
                 if (!resultSet.next()) break;
 
-                TeacherQuote quote = new TeacherQuote(resultSet.getString("teacher"),
+                TeacherQuote quote = new TeacherQuote(resultSet.getLong("id"),
+                        resultSet.getString("teacher"),
                         resultSet.getString("subject"),
                         resultSet.getString("quote"),
                         resultSet.getString("date").substring(0, 10));
@@ -166,7 +187,8 @@ public class DatabaseHandler {
             while (true) {
                 if (!resultSet.next()) break;
 
-                TeacherQuote quote = new TeacherQuote(resultSet.getString("teacher"),
+                TeacherQuote quote = new TeacherQuote(resultSet.getLong("id"),
+                        resultSet.getString("teacher"),
                         resultSet.getString("subject"),
                         resultSet.getString("quote"),
                         resultSet.getString("date").substring(0, 10));
@@ -181,6 +203,26 @@ public class DatabaseHandler {
         }
 
         return quotes;
+    }
+
+    public ResultSet countQuotes() {
+        ResultSet resultSet = null;
+
+        String select = "SELECT COUNT(*) AS rowcount FROM teacher_quotes WHERE id_user=?";
+
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(select);
+            prSt.setString(1, currentUser.getId());
+            resultSet = prSt.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+        return resultSet;
     }
 
     public static void setCurrentUser(User user) {

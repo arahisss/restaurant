@@ -9,10 +9,14 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AddController {
+import java.io.IOException;
+
+public class UpdateController {
+
+    public static TeacherQuote currentQuote;
 
     @FXML
-    private Button add;
+    private Button updateButton;
 
     @FXML
     private TextArea quoteField;
@@ -29,15 +33,18 @@ public class AddController {
     @FXML
     void initialize() {
 
-        add.setOnAction(event -> {
+        teacherField.setText(currentQuote.getTeacher());
+        subjectField.setText(currentQuote.getSubject());
+        quoteField.setText(currentQuote.getQuote());
+
+        updateButton.setOnAction(event -> {
             String quote = quoteField.getText().trim();
             String teacher = teacherField.getText().trim();
             String subject = subjectField.getText().trim();
 
             if (!quote.equals("") && !teacher.equals("") && !subject.equals("")) {
-                addQuote(quote, teacher, subject);
+                updateQuote(teacher, subject, quote);
 
-                add.getScene().getWindow().hide();
                 if (DatabaseHandler.currentUser.getId_role() == 2) {
                     openNewScene("appForSuper.fxml");
                 }
@@ -61,22 +68,28 @@ public class AddController {
         });
     }
 
-    private void addQuote(String quote, String teacher, String subject) {
+    public static void updateQuote(String teacher, String subject, String quote) {
         DatabaseHandler db = new DatabaseHandler();
-        TeacherQuote teacherQuote = new TeacherQuote(teacher, subject, quote);
-        db.addTeacherQuote(teacherQuote);
-
+        currentQuote.setTeacher(teacher);
+        currentQuote.setSubject(subject);
+        currentQuote.setQuote(quote);
+        db.updateTeacherQuote(currentQuote);
     }
 
-    public void openNewScene(String window) {
+    private void openNewScene(String window) {
+        updateButton.getScene().getWindow().hide();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+
         try {
-            Parent anotherRoot = FXMLLoader.load(getClass().getResource(window));
-            Stage anotherStage = new Stage();
-            anotherStage.setTitle("Цитаты преподавателей");
-            anotherStage.setScene(new Scene(anotherRoot));
-            anotherStage.show();
-        } catch (Exception e) {
+            loader.load();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 }

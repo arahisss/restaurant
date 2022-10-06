@@ -65,9 +65,9 @@ public class AppForSuperController {
             if (selectedItem != null) {
                 System.out.println(selectedItem.getId());
 
-                UpdateController.currentQuote = selectedItem;
+                UpdateQuoteController.currentQuote = selectedItem;
                 updateButton.getScene().getWindow().hide();
-                openNewScene("update.fxml");
+                openNewScene("updateQuote.fxml");
             }
         });
 

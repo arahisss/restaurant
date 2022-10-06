@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class UpdateController {
+public class UpdateQuoteController {
 
     public static TeacherQuote currentQuote;
 

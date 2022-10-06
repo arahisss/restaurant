@@ -40,6 +40,9 @@ public class AuthController {
     private Button backButton;
 
     @FXML
+    private Button forgotPassword;
+
+    @FXML
     void initialize() {
 
         signInButton.setOnAction(event -> {

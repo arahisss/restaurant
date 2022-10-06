@@ -2,7 +2,6 @@ package com.example.courseproject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,7 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -75,9 +73,9 @@ public class MyNotesController {
             if (selectedItem != null) {
                 System.out.println(selectedItem.getId());
 
-                UpdateController.currentQuote = selectedItem;
+                UpdateQuoteController.currentQuote = selectedItem;
                 updateButton.getScene().getWindow().hide();
-                openNewScene("update.fxml");
+                openNewScene("updateQuote.fxml");
             }
         });
 

@@ -36,10 +36,8 @@ public class DatabaseHandler {
 
     // Добавление записи в таблицу users
     public void signUpUser(User user) {
-//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         String insert = "INSERT INTO users (id_role, login, hash_password) VALUES(?, ?, ?)";
-        //Todo: параметрический запрос
 
         currentUser = user;
 
@@ -97,10 +95,10 @@ public class DatabaseHandler {
     }
 
     public void updateTeacherQuote(TeacherQuote teacherQuote) {
-        String delete = "UPDATE teacher_quotes SET teacher=?, subject=?, quote = ? WHERE id=?";
+        String update = "UPDATE teacher_quotes SET teacher=?, subject=?, quote = ? WHERE id=?";
 
         try {
-            PreparedStatement prSt = getDbConnection().prepareStatement(delete);
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
             prSt.setString(1, teacherQuote.getTeacher());
             prSt.setString(2, teacherQuote.getSubject());
             prSt.setString(3, teacherQuote.getQuote());
@@ -117,8 +115,25 @@ public class DatabaseHandler {
 
     }
 
+    public void updateUser() {
+        String update = "UPDATE users SET login=?, hash_password=? WHERE id=?";
 
-    // Получение записи из таблицы users
+        try {
+            PreparedStatement prSt = getDbConnection().prepareStatement(update);
+            prSt.setString(1, currentUser.getLogin());
+            prSt.setString(2, currentUser.getPassword());
+            prSt.setString(3, currentUser.getId());
+
+            prSt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public ResultSet getUser(User user) {
         ResultSet resultSet = null;
 

@@ -31,7 +31,7 @@
             <Font name="Serif Regular" size="18.0" />
          </font>
       </Button>
-      <Label layoutX="367.0" layoutY="131.0" prefHeight="48.0" prefWidth="165.0" text="Авторизация" textFill="WHITE">
+      <Label layoutX="367.0" layoutY="130.0" prefHeight="48.0" prefWidth="165.0" text="Авторизация" textFill="WHITE">
          <font>
             <Font name="Serif Regular" size="29.0" />
          </font>

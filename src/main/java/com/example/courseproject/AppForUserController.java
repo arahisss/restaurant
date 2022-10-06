@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +41,9 @@ public class AppForUserController {
     private Button myNotesButton;
 
     @FXML
+    private MenuItem updateUserButton;
+
+    @FXML
     void initialize() {
         DatabaseHandler db = new DatabaseHandler();
         ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getTeacherQuotes());
@@ -55,6 +59,11 @@ public class AppForUserController {
         addButton.setOnAction(event -> {
             addButton.getScene().getWindow().hide();
             openNewScene("add.fxml");
+        });
+
+        updateUserButton.setOnAction(event -> {
+            addButton.getScene().getWindow().hide();
+            openNewScene("updateUser.fxml");
         });
 
 

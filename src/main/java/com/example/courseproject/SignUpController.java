@@ -1,5 +1,6 @@
 package com.example.courseproject;
 
+import com.example.courseproject.animations.Shake;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class SignUpController {
+import java.util.Objects;
 
-    @FXML
-    private Button backImageButton;
+public class SignUpController {
 
     @FXML
     private TextField loginField;
@@ -30,10 +30,21 @@ public class SignUpController {
     void initialize() {
 
         signUpButton.setOnAction(event -> {
-            signUpNewUser();
-            signUpButton.getScene().getWindow().hide();
+            String loginText = loginField.getText().trim();
+            String passwordText = passwordField.getText().trim();
 
-            openNewScene("appForUser.fxml");
+            if (!loginText.equals("") && !passwordText.equals("")) {
+                signUpNewUser(loginText, passwordText);
+            }
+            else {
+                Shake userLoginAnim = new Shake(loginField);
+                Shake userPassAnim = new Shake(passwordField);
+
+                userLoginAnim.playAnim();
+                userPassAnim.playAnim();
+
+                System.out.println("Поле логин или пароль пусты!");
+            }
         });
 
         backButton.setOnAction(event -> {
@@ -55,10 +66,13 @@ public class SignUpController {
         }
     }
 
-    private void signUpNewUser() {
+    private void signUpNewUser(String loginText, String passwordText) {
         DatabaseHandler db = new DatabaseHandler();
-        User user = new User(loginField.getText().trim(), CryptWithMD5.cryptWithMD5(passwordField.getText().trim()));
+        User user = new User(loginText, CryptWithMD5.cryptWithMD5(passwordText));
         db.signUpUser(user);
+
+        signUpButton.getScene().getWindow().hide();
+        openNewScene("appForUser.fxml");
     }
 
 }

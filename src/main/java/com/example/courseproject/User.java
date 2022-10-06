@@ -1,7 +1,5 @@
 package com.example.courseproject;
 
-import java.util.Objects;
-
 public class User {
     private String login;
     private String password;
@@ -28,11 +26,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     public String getId() {

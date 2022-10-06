@@ -54,18 +54,12 @@ public class MyNotesController {
     @FXML
     void initialize() {
         DatabaseHandler db = new DatabaseHandler();
-        ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getMyNotes());
 
-        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacher"));
-        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
-        quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-
-        table.setItems(quotesData);
+        fillTable(db);
 
         addButton.setOnAction(event -> {
             addButton.getScene().getWindow().hide();
-            openNewScene("add.fxml");
+            openNewScene("addQuote.fxml");
         });
 
         updateButton.setOnAction(event -> {
@@ -99,6 +93,17 @@ public class MyNotesController {
 
         setCountText(db);
 
+    }
+
+    private void fillTable(DatabaseHandler db) {
+        ObservableList<TeacherQuote> quotesData = FXCollections.observableArrayList(db.getMyNotes());
+
+        teacherColumn.setCellValueFactory(new PropertyValueFactory<>("teacher"));
+        subjectColumn.setCellValueFactory(new PropertyValueFactory<>("subject"));
+        quoteColumn.setCellValueFactory(new PropertyValueFactory<>("quote"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        table.setItems(quotesData);
     }
 
     private void setCountText(DatabaseHandler db) {

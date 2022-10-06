@@ -151,7 +151,6 @@ public class DatabaseHandler {
             e.printStackTrace();
         }
 
-
         return resultSet;
     }
 

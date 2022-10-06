@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="527.0" prefWidth="900.0" style="-fx-background-color: #2F3136;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.AddController">
+<AnchorPane prefHeight="527.0" prefWidth="900.0" style="-fx-background-color: #2F3136;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.courseproject.AddQuoteController">
    <children>
       <Label layoutX="310.0" layoutY="38.0" prefHeight="34.0" prefWidth="278.0" text="Добавьте свою запись" textFill="WHITE">
          <font>

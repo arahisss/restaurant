@@ -19,12 +19,6 @@ import javafx.stage.Stage;
 public class AuthController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private PasswordField passwordField;
 
     @FXML
@@ -39,8 +33,6 @@ public class AuthController {
     @FXML
     private Button backButton;
 
-    @FXML
-    private Button forgotPassword;
 
     @FXML
     void initialize() {

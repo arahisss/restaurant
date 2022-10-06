@@ -78,23 +78,4 @@ public class HomeController {
         }
     }
 
-    private static void con() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            Connection connection = DriverManager.getConnection(
-                    "jdbc:mysql://std-mysql.ist.mospolytech.ru:3306/std_1971_my_app",
-                    "std_1971_my_app", "root1234");
-
-            connection.close();
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public static void main(String[] args) {
-//        con();
-
-    }
 }

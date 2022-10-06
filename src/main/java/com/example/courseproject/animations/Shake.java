@@ -14,7 +14,7 @@ public class Shake {
 
 //        tt.setFromY(0f);
 //        tt.setByY(10f);
-//
+
         tt.setCycleCount(4);
         tt.setAutoReverse(true);
 

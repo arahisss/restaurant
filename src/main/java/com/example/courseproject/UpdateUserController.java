@@ -42,17 +42,15 @@ public class UpdateUserController {
                 DatabaseHandler db = new DatabaseHandler();
 
                 DatabaseHandler.currentUser.setLogin(loginField.getText().trim());
-                DatabaseHandler.currentUser.setPassword(CryptWithMD5.cryptWithMD5(passwordField.getText().trim()));
+                DatabaseHandler.currentUser.setPassword(CryptWithMD5
+                        .cryptWithMD5(passwordField.getText().trim()));
                 db.updateUser();
 
                 openNewScene("appForUser.fxml");
-
             }
             else {
                 System.out.println("Заполните все поля!");
             }
-
-
         });
     }
 

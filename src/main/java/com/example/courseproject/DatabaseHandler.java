@@ -188,7 +188,6 @@ public class DatabaseHandler {
     }
 
     public ArrayList<TeacherQuote> getMyNotes() {
-
         ResultSet resultSet;
         String select = "SELECT * FROM teacher_quotes WHERE id_user=?";
         ArrayList<TeacherQuote> quotes = new ArrayList<>();

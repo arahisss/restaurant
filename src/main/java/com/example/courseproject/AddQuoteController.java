@@ -65,7 +65,6 @@ public class AddQuoteController {
         DatabaseHandler db = new DatabaseHandler();
         TeacherQuote teacherQuote = new TeacherQuote(teacher, subject, quote);
         db.addTeacherQuote(teacherQuote);
-
     }
 
     public void openNewScene(String window) {

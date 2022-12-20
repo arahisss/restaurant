@@ -40,6 +40,7 @@
         </dependency>
     </dependencies>
 
+
     <build>
         <plugins>
             <plugin>
@@ -51,6 +52,8 @@
                     <target>16</target>
                 </configuration>
             </plugin>
+
+
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -60,7 +63,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.courseproject/com.example.courseproject.HelloApplication</mainClass>
+                            <mainClass>com.example.courseproject/com.example.courseproject.MyApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>

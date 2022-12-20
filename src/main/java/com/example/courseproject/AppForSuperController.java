@@ -44,7 +44,6 @@ public class AppForSuperController {
     @FXML
     void initialize() {
         DatabaseHandler db = new DatabaseHandler();
-
         fillTable(db);
 
         addButton.setOnAction(event -> {
@@ -68,7 +67,6 @@ public class AppForSuperController {
             db.deleteTeacherQuote(selectedItem);
             table.getItems().remove(selectedItem);
         });
-
 
         logOutButton.setOnAction(event -> {
             logOutButton.getScene().getWindow().hide();
